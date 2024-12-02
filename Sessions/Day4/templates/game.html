@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Rock Paper Scissors</h1>
+    
+    <div class="score-board">
+        <h2>Score</h2>
+        <p>You: {{ user_score }} - Computer: {{ computer_score }}</p>
+    </div>
+
+    {% if user_choice and computer_choice %}
+    <div class="result">
+        <p>You chose: {{ user_choice }}</p>
+        <p>Computer chose: {{ computer_choice }}</p>
+        {% if winner == "User" %}
+            <p class="winner-text">You win! 🎉</p>
+        {% elif winner == "Computer" %}
+            <p class="winner-text">Computer wins! 💻</p>
+        {% else %}
+            <p class="winner-text">It's a tie! 🤝</p>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <div class="choices">
+        <h2>Make your choice:</h2>
+        <div class="buttons">
+            <a href="{{ url_for('play', choice='rock') }}" class="choice-btn">Rock ✊</a>
+            <a href="{{ url_for('play', choice='paper') }}" class="choice-btn">Paper ✋</a>
+            <a href="{{ url_for('play', choice='scissors') }}" class="choice-btn">Scissors ✌️</a>
+        </div>
+    </div>
+
+    <div class="reset">
+        <a href="{{ url_for('reset') }}" class="reset-btn">Reset Game</a>
+    </div>
+</div>
+{% endblock %} 
